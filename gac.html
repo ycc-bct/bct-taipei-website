@@ -40,6 +40,43 @@
       padding: 8px 16px; border-radius: 50px; transition: color 0.2s, background 0.2s;
     }
     .bct-nav-links a:hover { color: white; background: rgba(255,255,255,0.05); }
+    .bct-nav-work-wrap { position: relative; }
+    .bct-nav-work-btn {
+      font-family: inherit; font-size: 14px; font-weight: 500;
+      color: var(--bct-dim); background: none; border: none; cursor: pointer;
+      padding: 8px 16px; border-radius: 50px;
+      display: flex; align-items: center; gap: 5px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .bct-nav-work-btn svg { transition: transform 0.2s; }
+    .bct-nav-work-wrap:hover .bct-nav-work-btn,
+    .bct-nav-work-wrap.open .bct-nav-work-btn { color: white; background: rgba(255,255,255,0.05); }
+    .bct-nav-work-wrap:hover .bct-nav-work-btn svg,
+    .bct-nav-work-wrap.open .bct-nav-work-btn svg { transform: rotate(180deg); }
+    .bct-nav-dropdown {
+      position: absolute; top: 100%;
+      left: 50%; transform: translateX(-50%) translateY(-4px);
+      background: rgba(4,5,13,0.6);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px; padding: 18px 0 8px; min-width: 190px;
+      opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+      z-index: 300;
+    }
+    .bct-nav-work-wrap:hover .bct-nav-dropdown,
+    .bct-nav-work-wrap.open .bct-nav-dropdown {
+      opacity: 1; visibility: visible; pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+    .bct-nav-dropdown a {
+      display: block; text-align: center; padding: 13px 20px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.45); text-decoration: none; white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
+      border-radius: 10px; margin: 0 6px;
+    }
+    .bct-nav-dropdown a:hover { color: #fff; background: rgba(255,255,255,0.06); }
     .bct-nav-btn {
       background: linear-gradient(135deg, var(--bct-blue), var(--bct-violet));
       color: white; font-family: 'Space Grotesk', sans-serif;
@@ -195,7 +232,20 @@
     <a href="index.html#about">About</a>
     <a href="index.html#services">Services</a>
     <a href="index.html#process">Process</a>
-    <a href="index.html#cases">Work</a>
+    <div class="bct-nav-work-wrap" id="bctNavWorkWrap">
+      <button class="bct-nav-work-btn" aria-haspopup="true" aria-expanded="false">
+        Work
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="2,4 6,8 10,4"/>
+        </svg>
+      </button>
+      <div class="bct-nav-dropdown" role="menu">
+        <a href="https://dev.bct-nova.net/" target="_blank" rel="noopener noreferrer" role="menuitem">NOVA</a>
+        <a href="Claude/fitting.html" role="menuitem">Dynamic Cycling Fit</a>
+        <a href="#" role="menuitem">FLIR</a>
+        <a href="gac.html" role="menuitem">GAC</a>
+      </div>
+    </div>
   </div>
   <a href="index.html#cta" class="bct-nav-btn">Contact Us</a>
 </nav>
@@ -1196,6 +1246,17 @@ document.querySelectorAll('#sec-hero .reveal').forEach(function(el) {
 <script>
 const bctNav = document.getElementById('bct-nav');
 window.addEventListener('scroll', () => bctNav.classList.toggle('scrolled', scrollY > 80), {passive: true});
+
+const bctNavWorkWrap = document.getElementById('bctNavWorkWrap');
+bctNavWorkWrap.querySelector('.bct-nav-work-btn').addEventListener('click', e => {
+  e.stopPropagation();
+  const open = bctNavWorkWrap.classList.toggle('open');
+  bctNavWorkWrap.querySelector('.bct-nav-work-btn').setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', () => {
+  bctNavWorkWrap.classList.remove('open');
+  bctNavWorkWrap.querySelector('.bct-nav-work-btn').setAttribute('aria-expanded', false);
+});
 </script>
 
 </body>
