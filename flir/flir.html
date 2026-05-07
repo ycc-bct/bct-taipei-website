@@ -42,7 +42,7 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 80px;
+      padding: 18px 100px;
       background: rgba(30,30,30,0.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(59,232,211,0.1);
@@ -96,7 +96,7 @@
         radial-gradient(ellipse 30% 30% at 20% 80%, rgba(59,232,211,0.04) 0%, transparent 60%);
     }
     .hero-left {
-      padding: 80px 64px 80px 80px;
+      padding: 100px 64px 100px 100px;
       position: relative; z-index: 1;
       display: flex; flex-direction: column; gap: 26px;
     }
@@ -140,7 +140,7 @@
     .device-wrap {
       position: relative;
       width: 100%;
-      max-width: 700px;
+      max-width: 800px;
       padding: 0 20px;
       transform-style: preserve-3d;
     }
@@ -183,12 +183,30 @@
     .cursor-ring.active  { opacity: 1; }
     .cursor-ring.hover   { width: 56px; height: 56px; border-color: rgba(59,232,211,1); }
 
+    /* ─── HERO DEVICE GLOW ─── */
+    .hero-device-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,130,117,0.22) 0%, rgba(59,232,211,0.08) 45%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform 0.8s cubic-bezier(.22,.68,0,1), opacity 0.8s;
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-right:hover .hero-device-glow {
+      transform: translate(-50%, -50%) scale(1.55);
+      opacity: 1;
+    }
+
     /* ─── CHART SVG ─── */
     .ch { width: 100%; display: block; }
 
     /* ─── SECTION / CONTAINER ─── */
     .section { padding: 100px 0; }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 0 100px; }
     .divider { height: 1px; background: var(--bd); }
 
     .sec-label {
@@ -231,9 +249,16 @@
         rgba(0,0,0,0.45) 55%,
         rgba(0,0,0,0.15) 100%);
     }
-    .m-card-1 .m-card-bg { background: linear-gradient(145deg,#071e1b 0%,#0d3028 55%,#071a16 100%); }
-    .m-card-2 .m-card-bg { background: linear-gradient(145deg,#1a1700 0%,#2e2800 55%,#1a1600 100%); }
-    .m-card-3 .m-card-bg { background: linear-gradient(145deg,#160a00 0%,#281500 55%,#160a00 100%); }
+    .m-card-1 .m-card-bg {
+      background-image: url('FLIR Image/Monitor.webp');
+      background-size: cover; background-position: center;
+      opacity: 0.45;
+    }
+    .m-card-2 .m-card-bg {
+      background-image: url('FLIR Image/Capture Data.webp');
+      background-size: cover; background-position: center;
+      opacity: 0.45;
+    }
 
     /* subtle grid texture */
     .m-card::after {
@@ -268,19 +293,38 @@
 
     /* ─── SERVICE CONCEPT ─── */
     .service { position: relative; overflow: hidden; }
-    #particles { position: absolute; inset: 0; pointer-events: none; }
-    .service-head { margin-bottom: 64px; position: relative; z-index: 1; }
+    .service-bg {
+      position: absolute; inset: 0;
+      background-image: url('FLIR Image/BG.png');
+      background-size: cover; background-position: center;
+      opacity: 0.18;
+      filter: blur(0px);
+      animation: bgBlurPulse 8s ease-in-out infinite;
+      pointer-events: none; z-index: 0;
+    }
+    @keyframes bgBlurPulse {
+      0%,100% { filter: blur(0px);   opacity: 0.18; }
+      50%      { filter: blur(6px);  opacity: 0.28; }
+    }
+    .service-head { margin-bottom: 64px; position: relative; z-index: 2; }
     .pill {
-      position: relative; z-index: 1;
+      position: relative; z-index: 2;
       border: 1px solid rgba(59,232,211,0.22);
       border-radius: 999px;
-      padding: 60px 72px;
+      padding: 80px 96px;
       max-width: 940px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 48px 1fr;
       gap: 0; align-items: center;
       background: rgba(10,20,18,0.5);
       backdrop-filter: blur(4px);
+      transition: border-color 0.4s, box-shadow 0.4s;
+      cursor: default;
     }
+    .pill.stroke-hover {
+      border-color: rgba(239,177,85,0.75);
+      box-shadow: 0 0 0 3px rgba(239,177,85,0.12), 0 0 28px rgba(239,177,85,0.18);
+    }
+    .pill > div { padding: 24px; }
     .pill-item-title {
       font-size: 1.28rem; font-weight: 700;
       line-height: 1.28; margin-bottom: 16px;
@@ -311,14 +355,23 @@
     .pill-line { flex: 1; width: 1px; background: rgba(59,232,211,0.18); }
 
     /* ─── FEATURES ─── */
-    .features { background: var(--bg2); }
+    .features { background: var(--bg2); position: relative; overflow: hidden; }
+    .feat-wave-bg {
+      position: absolute; bottom: 0; left: -5%; width: 110%;
+      pointer-events: none; opacity: 0.13;
+      animation: ecgScan 12s linear infinite;
+    }
+    @keyframes ecgScan {
+      0%   { transform: translateX(0)    scaleY(1);    opacity: 0.13; }
+      20%  { transform: translateX(-3%)  scaleY(1.12); opacity: 0.18; }
+      45%  { transform: translateX(-8%)  scaleY(0.92); opacity: 0.10; }
+      60%  { transform: translateX(-12%) scaleY(1.2);  opacity: 0.20; }
+      80%  { transform: translateX(-6%)  scaleY(0.88); opacity: 0.11; }
+      100% { transform: translateX(0)    scaleY(1);    opacity: 0.13; }
+    }
     .feat-head {
       display: flex; align-items: flex-end; justify-content: space-between;
       margin-bottom: 64px;
-    }
-    .feat-sub {
-      font-size: 0.92rem; color: var(--muted); line-height: 1.72;
-      max-width: 42ch;
     }
     .feat-layout {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -343,7 +396,24 @@
       background: var(--graph); flex-shrink: 0; margin-top: 6px;
     }
 
-    /* Feature phone cluster */
+    /* Feature device */
+    .feat-device-wrap {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feat-device-img {
+      width: 100%; max-width: 600px; display: block;
+      filter: drop-shadow(0 30px 70px rgba(0,0,0,0.65));
+      animation: float 7s ease-in-out infinite;
+      position: relative; z-index: 1;
+    }
+    .data-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 2;
+    }
+
+    /* (kept for CSS reference, no longer in HTML) */
     .feat-phones {
       position: relative; height: 440px;
     }
@@ -390,67 +460,107 @@
     .fp-alarm-val { font-size: 0.52rem; font-weight: 700; color: var(--graph); }
     .fp-alarm-val-dark { color: var(--primary); }
 
-    /* ─── STATS ─── */
-    .stats { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
-    .stats-l {
-      background: #111;
-      padding: 80px 80px;
-      display: flex; flex-direction: column;
-      justify-content: center; gap: 36px;
+    /* ─── QUOTE + STATS COMBINED ─── */
+    .stats-combined {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
     }
-    .quote-mark {
-      font-size: 3.5rem; color: var(--lo-line);
-      line-height: 0.7; font-weight: 300;
-    }
-    .quote-text {
-      font-size: 1rem; color: rgba(255,255,255,0.78);
-      line-height: 1.8; max-width: 42ch;
-    }
-    .quote-author { display: flex; align-items: center; gap: 16px; }
-    .author-ava {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--bg3);
-      border: 2px solid var(--primary);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; flex-shrink: 0;
-    }
-    .author-name { font-size: 0.9rem; font-weight: 700; }
-    .author-role { font-size: 0.76rem; color: var(--muted); }
 
-    .stats-r {
+    /* ── Left: Quote panel ── */
+    .sq-left {
+      background: #292929;
+      position: relative;
+      overflow: hidden;
+      padding: 72px 64px 72px 300px; /* 300px left clears the 260px circle */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Concentric circles (decorative, left-anchored) */
+    @keyframes breathe {
+      0%, 100% { transform: translateY(-50%) scale(1);    opacity: 0.55; }
+      50%       { transform: translateY(-50%) scale(1.12); opacity: 0.78; }
+    }
+    .qc-group {
+      position: absolute;
+      left: 24px; top: 50%;
+      transform: translateY(-50%);
+      width: 260px; height: 260px;
+      opacity: 0.55;
+      animation: breathe 5s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    .qc { position: absolute; border-radius: 50%; }
+    .qc-4 { inset: 0;                                                   background: rgba(0,130,117,0.10); }
+    .qc-3 { width: 213px; height: 213px; left: 23px; top: 23px;        background: rgba(0,130,117,0.15); }
+    .qc-2 { width: 168px; height: 168px; left: 46px; top: 46px;        background: rgba(0,130,117,0.20); }
+    .qc-1 { width: 122px; height: 122px; left: 69px; top: 69px;        background: rgba(0,130,117,0.44); }
+
+    /* Avatar — outside qc-group so opacity:1 is not inherited */
+    .q-avatar {
+      position: absolute;
+      left: 108px; top: 50%;
+      transform: translateY(-50%);
+      width: 91px; height: 97px;
+      object-fit: cover; z-index: 3;
+      opacity: 1;
+    }
+
+    /* Quote content stack */
+    .sq-content {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .q-mark         { width: 46px; height: auto; display: block; }
+    .q-mark-open    { /* inherits */ }
+    .q-mark-close   { transform: rotate(180deg); align-self: flex-end; }
+    .q-text {
+      font-size: 20px; font-weight: 400;
+      line-height: 1.5; color: #C8E2DF; margin: 0;
+    }
+    .q-author {
+      font-size: 14px; font-weight: 400;
+      color: rgba(200,226,223,0.7); margin: 0;
+    }
+
+    /* ── Right: Stats panel ── */
+    .sq-right {
       background: var(--primary);
-      padding: 80px 80px;
+      padding: 72px 72px;
       display: flex; flex-direction: column;
       justify-content: center; gap: 16px;
       position: relative; overflow: hidden;
     }
-    .stats-r::before {
+    .sq-right::before {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(140deg, rgba(0,0,0,0.18) 0%, transparent 55%);
+      background: linear-gradient(140deg, rgba(0,0,0,0.2) 0%, transparent 60%);
     }
     .stats-num {
       position: relative; z-index: 1;
-      font-size: clamp(4rem, 7vw, 6.5rem);
-      font-weight: 800; letter-spacing: -0.04em; line-height: 0.92;
+      font-size: clamp(3.5rem, 5vw, 5.8rem);
+      font-weight: 800; letter-spacing: -0.04em; line-height: 0.9;
     }
-    .stats-num .n-hi  { color: var(--lo-line); }
-    .stats-num .n-dk  { color: rgba(0,0,0,0.65); }
-    .stats-num .n-plus{ color: rgba(0,0,0,0.4); font-size: 0.55em; }
+    .stats-num .n-hi   { color: var(--lo-line); }
+    .stats-num .n-plus { color: rgba(0,0,0,0.38); font-size: 0.55em; }
+    .slot-char { display: inline-block; min-width: 0.52em; text-align: center; }
+    .slot-sep  { display: inline-block; }
     .stats-word {
       position: relative; z-index: 1;
-      font-size: 1.9rem; font-weight: 300;
-      color: rgba(0,0,0,0.55); letter-spacing: -0.01em;
+      font-size: 1.7rem; font-weight: 800;
+      color: rgba(0,0,0,0.72); letter-spacing: -0.02em;
+      text-transform: uppercase;
     }
     .stats-rule {
       width: 48px; height: 1px;
       background: rgba(0,0,0,0.2);
-      position: relative; z-index: 1;
-      margin: 4px 0;
+      position: relative; z-index: 1; margin: 4px 0;
     }
     .stats-sub {
       position: relative; z-index: 1;
-      font-size: 0.85rem; color: rgba(0,0,0,0.55);
+      font-size: 0.85rem; color: rgba(0,0,0,0.52);
     }
     .stats-sub strong { color: var(--lo-line); font-weight: 700; }
 
@@ -458,7 +568,7 @@
     footer {
       background: #111;
       border-top: 1px solid rgba(59,232,211,0.08);
-      padding: 28px 80px;
+      padding: 28px 100px;
       display: flex; align-items: center; justify-content: space-between;
     }
     .footer-l { font-size: 0.76rem; color: var(--sec); }
@@ -504,8 +614,9 @@
   <div class="cursor-ring" id="cursorRing"></div>
 
   <div class="hero-right reveal d2">
+    <div class="hero-device-glow"></div>
     <div class="device-wrap" id="deviceWrap">
-      <img class="device-img" id="deviceImg" src="FLIR Image/Device.svg" alt="FLIR App Mockup">
+      <img class="device-img" id="deviceImg" src="FLIR Image/Device-2.svg" alt="FLIR App Mockup">
     </div>
   </div>
 </section>
@@ -558,7 +669,7 @@
 
 <!-- ═══════════ SERVICE CONCEPT ═══════════ -->
 <section class="section service">
-  <canvas id="particles"></canvas>
+  <div class="service-bg"></div>
   <div class="wrap">
     <div class="service-head reveal">
       <p class="sec-label">Service Concept</p>
@@ -587,18 +698,16 @@
 
 <!-- ═══════════ FEATURES ═══════════ -->
 <section class="section features">
+  <img class="feat-wave-bg" src="FLIR Image/Wave.svg" alt="">
   <div class="wrap">
     <div class="feat-head reveal">
       <div>
         <h2 class="sec-h2">Features</h2>
       </div>
-      <p class="feat-sub">User experience is optimized with dark and light display modes, plus tap-to-inspect data windows that reveal precise readings at any graph coordinate.</p>
     </div>
     <div class="feat-layout reveal d1">
       <div>
-        <p class="sec-label feat-sec-label">02 — Display and Report</p>
         <h3 class="feat-h3">Tap any point.<br>See the exact moment.</h3>
-        <p class="feat-desc">An instantaneous data window opens when you tap any coordinate on a measurement graph. The app automatically logs every reading with date and time — making every anomaly fully traceable.</p>
         <div class="feat-pts">
           <div class="feat-pt"><div class="feat-dot"></div><span>Dark &amp; light display modes for any lighting condition</span></div>
           <div class="feat-pt"><div class="feat-dot"></div><span>Tap-to-inspect: precise value at any graph point</span></div>
@@ -607,108 +716,8 @@
         </div>
       </div>
 
-      <div class="feat-phones">
-        <!-- FP1: dark mode -->
-        <div class="fp fp-1">
-          <div class="fp-pill"></div>
-          <div class="fp-hdr">
-            <div class="fp-t">Humidity ⓘ</div>
-            <div class="fp-val-row" style="margin-top:3px">
-              <span class="fp-alert">▲</span>
-              <span class="fp-num">125.09</span>
-              <span class="fp-unit">%RH</span>
-            </div>
-            <div class="fp-mm">
-              <span>MIN <b>105.58</b></span>
-              <span>AVG <b>160.58</b></span>
-              <span>MAX <b>180.95</b></span>
-            </div>
-            <svg width="100%" height="52" viewBox="0 0 172 52" fill="none">
-              <defs>
-                <linearGradient id="fg1" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3BE8D3" stop-opacity="0.28"/>
-                  <stop offset="100%" stop-color="#3BE8D3" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0 40 C14 36,24 16,44 14 C64 12,74 34,94 28 C114 22,124 6,144 8 C160 10,168 30,172 28" stroke="#3BE8D3" stroke-width="1.5" fill="none"/>
-              <path d="M0 40 C14 36,24 16,44 14 C64 12,74 34,94 28 C114 22,124 6,144 8 C160 10,168 30,172 28 L172 52 L0 52Z" fill="url(#fg1)"/>
-              <line x1="0" y1="7" x2="172" y2="7" stroke="#F25F21" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.65"/>
-              <rect x="72" y="2" width="48" height="18" rx="2" fill="rgba(0,130,117,0.94)"/>
-              <text x="96" y="10" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="'Noto Sans',sans-serif">27.08 m/s</text>
-              <text x="96" y="18" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="5" font-family="'Noto Sans',sans-serif">18:12:16</text>
-            </svg>
-            <div class="fp-alarm-lbl">Last High Alarm &nbsp;Mar 26, 2021 | 16:25:52</div>
-            <div class="fp-alarm-val">126.09 %RH</div>
-          </div>
-        </div>
-
-        <!-- FP2: light mode -->
-        <div class="fp fp-2">
-          <div class="fp-pill fp-pill-light"></div>
-          <div class="fp-hdr fp-hdr-light">
-            <div class="fp-t fp-t-dark">Humidity ⓘ</div>
-            <div class="fp-val-row" style="margin-top:3px">
-              <span class="fp-alert">▲</span>
-              <span class="fp-num fp-num-dark">125.09</span>
-              <span class="fp-unit fp-unit-dark">%RH</span>
-            </div>
-            <div class="fp-mm fp-mm-dark">
-              <span>MIN <b>105.58</b></span>
-              <span>AVG <b>160.58</b></span>
-              <span>MAX <b>180.95</b></span>
-            </div>
-            <svg width="100%" height="52" viewBox="0 0 172 52" fill="none">
-              <defs>
-                <linearGradient id="fg2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3BE8D3" stop-opacity="0.22"/>
-                  <stop offset="100%" stop-color="#3BE8D3" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0 40 C14 36,24 16,44 14 C64 12,74 34,94 28 C114 22,124 6,144 8 C160 10,168 30,172 28" stroke="#3BE8D3" stroke-width="1.5" fill="none"/>
-              <path d="M0 40 C14 36,24 16,44 14 C64 12,74 34,94 28 C114 22,124 6,144 8 C160 10,168 30,172 28 L172 52 L0 52Z" fill="url(#fg2)"/>
-              <line x1="0" y1="7" x2="172" y2="7" stroke="#F25F21" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.6"/>
-              <rect x="72" y="2" width="48" height="18" rx="2" fill="rgba(0,130,117,0.9)"/>
-              <text x="96" y="10" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="'Noto Sans',sans-serif">27.08 m/s</text>
-              <text x="96" y="18" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="5" font-family="'Noto Sans',sans-serif">18:12:16</text>
-            </svg>
-            <div class="fp-alarm-lbl" style="color:#F25F21">Last High Alarm &nbsp;Mar 26, 2021 | 16:25:52</div>
-            <div class="fp-alarm-val fp-alarm-val-dark">126.09 %RH</div>
-          </div>
-        </div>
-
-        <!-- FP3: report/detail view -->
-        <div class="fp fp-3">
-          <div class="fp-pill"></div>
-          <div class="fp-hdr" style="padding-bottom:8px">
-            <div class="fp-t" style="margin-bottom:2px">LT250W-005</div>
-            <div class="fp-s">⊙ Humidity, Temperature</div>
-            <div class="fp-s">📅 Jan 13 – Jan 15, 2021</div>
-            <div class="fp-s" style="margin-bottom:6px">⏱ 14:08:50 – 23:06:48</div>
-            <div class="fp-t" style="font-size:0.54rem;margin-bottom:3px">Humidity ⓘ <span style="color:var(--sec);font-weight:400;float:right">%RH</span></div>
-            <svg width="100%" height="48" viewBox="0 0 172 48" fill="none">
-              <defs>
-                <linearGradient id="fg3" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3BE8D3" stop-opacity="0.22"/>
-                  <stop offset="100%" stop-color="#3BE8D3" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0 36 C14 30,24 12,44 10 C64 8,74 30,94 24 C114 18,124 4,144 6 C160 8,168 26,172 24" stroke="#3BE8D3" stroke-width="1.5" fill="none"/>
-              <path d="M0 36 C14 30,24 12,44 10 C64 8,74 30,94 24 C114 18,124 4,144 6 C160 8,168 26,172 24 L172 48 L0 48Z" fill="url(#fg3)"/>
-            </svg>
-            <div class="fp-t" style="font-size:0.54rem;margin-bottom:3px;margin-top:5px">Temperature ⓘ <span style="color:var(--sec);font-weight:400;float:right">°C</span></div>
-            <svg width="100%" height="48" viewBox="0 0 172 48" fill="none">
-              <defs>
-                <linearGradient id="fg4" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#3BE8D3" stop-opacity="0.2"/>
-                  <stop offset="100%" stop-color="#3BE8D3" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path d="M0 38 C14 34,26 18,46 16 C66 14,76 34,96 28 C116 22,128 8,148 10 C164 12,170 30,172 28" stroke="#3BE8D3" stroke-width="1.5" fill="none"/>
-              <path d="M0 38 C14 34,26 18,46 16 C66 14,76 34,96 28 C116 22,128 8,148 10 C164 12,170 30,172 28 L172 48 L0 48Z" fill="url(#fg4)"/>
-              <line x1="0" y1="7" x2="172" y2="7" stroke="#F25F21" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.55"/>
-            </svg>
-          </div>
-        </div>
+      <div class="feat-device-wrap">
+        <img class="feat-device-img" src="FLIR Image/Device-2.svg" alt="FLIR App">
       </div>
     </div>
   </div>
@@ -717,20 +726,32 @@
 <div class="divider"></div>
 
 
-<!-- ═══════════ STATS ═══════════ -->
-<div class="stats">
-  <div class="stats-l reveal">
-    <div class="quote-mark">"</div>
-    <p class="quote-text">High efficiency and quick response, also has good quality output. Great communication and knowledge about mobile app launches. Very patient team willing to work through challenges.</p>
-    <div class="quote-author">
-      <div class="author-ava">👤</div>
-      <div>
-        <div class="author-name">Vernis Yang</div>
-        <div class="author-role">Director R&amp;D, FLIR Systems</div>
-      </div>
+<!-- ═══════════ QUOTE + STATS ═══════════ -->
+<div class="stats-combined">
+
+  <!-- Left: Quote -->
+  <div class="sq-left reveal">
+    <!-- Concentric circles (breathing animation) -->
+    <div class="qc-group">
+      <div class="qc qc-4"></div>
+      <div class="qc qc-3"></div>
+      <div class="qc qc-2"></div>
+      <div class="qc qc-1"></div>
+    </div>
+    <!-- Avatar outside group → full opacity -->
+    <img class="q-avatar" src="FLIR Image/Customer.svg" alt="Vernis Yang">
+
+    <!-- Quote content -->
+    <div class="sq-content">
+      <img class="q-mark q-mark-open" src="FLIR Image/quote.svg" alt="">
+      <p class="q-text">High efficiency and quick response, also has good quality output. Great communication and knowledge about mobile app launches. Very patient team willing to work through challenges.</p>
+      <p class="q-author">– Vernis Yang, Director R&amp;D</p>
+      <img class="q-mark q-mark-close" src="FLIR Image/quote.svg" alt="">
     </div>
   </div>
-  <div class="stats-r reveal d1">
+
+  <!-- Right: Stats -->
+  <div class="sq-right reveal d1">
     <div class="stats-num">
       <span class="n-hi" id="stat-num">1,000,000</span><span class="n-plus">+</span>
     </div>
@@ -738,6 +759,7 @@
     <div class="stats-rule"></div>
     <div class="stats-sub">Ratings of <strong>4.7+</strong> / 5 on Play &amp; App Stores</div>
   </div>
+
 </div>
 
 
@@ -759,75 +781,83 @@ const obs = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-/* ── Particle canvas (Service Concept bokeh) ── */
+
+/* ── Pill stroke cursor interaction ── */
 (function () {
-  const canvas = document.getElementById('particles');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const particles = [];
+  const pill = document.querySelector('.pill');
+  if (!pill) return;
 
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  class P {
-    constructor() { this.init(); }
-    init() {
-      this.x    = Math.random() * canvas.width;
-      this.y    = canvas.height * (0.5 + Math.random() * 0.5);
-      this.r    = Math.random() * 22 + 5;
-      this.baseA = Math.random() * 0.1 + 0.02;
-      this.vx   = (Math.random() - 0.5) * 0.25;
-      this.vy   = -(Math.random() * 0.35 + 0.08);
-      this.life = Math.random() * 180;
-      this.max  = Math.random() * 180 + 80;
+  pill.addEventListener('mousemove', e => {
+    const r = pill.getBoundingClientRect();
+    const EDGE = 32; // px from border edge counts as "on stroke"
+    const onLeft   = e.clientX - r.left   < EDGE;
+    const onRight  = r.right  - e.clientX < EDGE;
+    const onTop    = e.clientY - r.top    < EDGE;
+    const onBottom = r.bottom - e.clientY < EDGE;
+    if (onLeft || onRight || onTop || onBottom) {
+      pill.classList.add('stroke-hover');
+    } else {
+      pill.classList.remove('stroke-hover');
     }
-    step() {
-      this.life++;
-      if (this.life > this.max) this.init();
-      this.x += this.vx;
-      this.y += this.vy;
-      const t = this.life / this.max;
-      const a = this.baseA * Math.sin(t * Math.PI);
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0,110,80,${a})`;
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < 45; i++) particles.push(new P());
-
-  function frame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => p.step());
-    requestAnimationFrame(frame);
-  }
-
-  resize();
-  window.addEventListener('resize', resize);
-  frame();
+  });
+  pill.addEventListener('mouseleave', () => pill.classList.remove('stroke-hover'));
 })();
 
-/* ── Stat counter ── */
+/* ── Slot-machine counter ── */
 (function () {
   const el = document.getElementById('stat-num');
   if (!el) return;
   let fired = false;
-  const target = 1000000;
+  const DISPLAY = '1,000,000'; // final string shown
+
+  function buildReels() {
+    el.innerHTML = '';
+    DISPLAY.split('').forEach(ch => {
+      const span = document.createElement('span');
+      if (/\d/.test(ch)) {
+        span.className = 'slot-char';
+        span.dataset.target = ch;
+        span.textContent = Math.floor(Math.random() * 10); // random start
+      } else {
+        span.className = 'slot-sep';
+        span.textContent = ch;
+      }
+      el.appendChild(span);
+    });
+  }
+
+  function spinDigit(span, delayMs) {
+    const target = span.dataset.target;
+    const spinCount = 18 + Math.floor(Math.random() * 14); // how many random frames
+    let frame = 0;
+    setTimeout(() => {
+      const iv = setInterval(() => {
+        frame++;
+        if (frame < spinCount) {
+          span.textContent = Math.floor(Math.random() * 10);
+          span.style.opacity = 0.4 + (frame / spinCount) * 0.6; // brightens as it settles
+        } else {
+          span.textContent = target;
+          span.style.opacity = 1;
+          clearInterval(iv);
+        }
+      }, 38);
+    }, delayMs);
+  }
+
+  function run() {
+    buildReels();
+    let digitIndex = 0;
+    el.querySelectorAll('.slot-char').forEach(span => {
+      spinDigit(span, digitIndex * 110); // 110ms stagger per digit
+      digitIndex++;
+    });
+  }
 
   new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting && !fired) {
       fired = true;
-      const dur = 2200, start = performance.now();
-      function tick(now) {
-        const t = Math.min((now - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - t, 4);
-        el.textContent = Math.floor(ease * target).toLocaleString();
-        if (t < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
+      run();
     }
   }, { threshold: 0.5 }).observe(el);
 })();
