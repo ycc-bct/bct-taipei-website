@@ -373,8 +373,8 @@
 
     /* ── Step animation layout ── */
     .feat-anim-layout {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 72px; align-items: center;
     }
 
     /* Left: step info */
@@ -407,24 +407,24 @@
 
     /* Right: SVG frame */
     .feat-phone-anim {
-      display: flex; flex-direction: column; align-items: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
     .feat-svg-frame {
-      position: relative; width: 100%; max-width: 420px;
+      position: relative; width: 100%;
       aspect-ratio: 800 / 730;
     }
     .feat-step-img {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       object-fit: contain; opacity: 0;
       transition: opacity 0.65s ease;
-      filter: drop-shadow(0 28px 56px rgba(0,0,0,0.6));
+      filter: drop-shadow(0 32px 72px rgba(0,0,0,0.65));
     }
     .feat-step-img:first-child { position: absolute; }
     .feat-step-img.active { opacity: 1; }
 
     /* Progress bar */
     .feat-progress-track {
-      width: 100%; max-width: 420px; height: 2px;
+      width: 100%; height: 2px;
       background: rgba(255,255,255,0.07); border-radius: 1px;
       margin-top: 16px; overflow: hidden;
     }
@@ -684,19 +684,19 @@
       <div class="feat-steps-info">
 
         <div class="feat-step-item active" id="fstep-1">
-          <div class="feat-step-num">Step 01 — Connect &amp; Set Alarm</div>
+          <div class="feat-step-num">01 — Connect &amp; Set Alarm</div>
           <h3 class="feat-h3">Enable alarms.<br>Return to live view.</h3>
           <p class="feat-step-desc">Select any connected device and configure its high and low alarm thresholds. Toggle the alarm on and tap back to return to the live dashboard — your settings are saved instantly.</p>
         </div>
 
         <div class="feat-step-item" id="fstep-2">
-          <div class="feat-step-num">Step 02 — Live Monitoring</div>
+          <div class="feat-step-num">02 — Live Monitoring</div>
           <h3 class="feat-h3">All meters.<br>One live screen.</h3>
           <p class="feat-step-desc">Watch Humidity and Sound Level values shift in real-time as conditions change. When a reading demands a closer look, tap its card to drill into the full measurement detail.</p>
         </div>
 
         <div class="feat-step-item" id="fstep-3">
-          <div class="feat-step-num">Step 03 — Inspect &amp; Report</div>
+          <div class="feat-step-num">03 — Inspect &amp; Report</div>
           <h3 class="feat-h3">Tap any point.<br>See the exact moment.</h3>
           <p class="feat-step-desc">The detail view renders a full measurement graph with alarm threshold lines. Switch to light mode for bright environments, or export a timestamped PDF report directly from the app.</p>
         </div>
