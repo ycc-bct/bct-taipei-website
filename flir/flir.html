@@ -369,8 +369,6 @@
       80%  { transform: translateX(-6%)  scaleY(0.88); opacity: 0.11; }
       100% { transform: translateX(0)    scaleY(1);    opacity: 0.13; }
     }
-    .feat-head { margin-bottom: 56px; }
-
     /* ── Step animation layout ── */
     .feat-anim-layout {
       display: grid; grid-template-columns: 1fr 1.2fr;
@@ -378,7 +376,7 @@
     }
 
     /* Left: step info */
-    .feat-steps-info { position: relative; min-height: 280px; }
+    .feat-steps-info { position: relative; }
     .feat-step-item {
       opacity: 0; position: absolute; top: 0; left: 0; right: 0;
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -387,10 +385,8 @@
     .feat-step-item.active {
       opacity: 1; position: relative; transform: translateY(0); pointer-events: auto;
     }
-    .feat-step-num {
-      font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em;
-      color: var(--graph); text-transform: uppercase; margin-bottom: 14px;
-    }
+    /* Reserve space for the tallest step text so layout doesn't collapse */
+    .feat-steps-body { position: relative; min-height: 220px; }
     .feat-h3 { font-size: 1.65rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
     .feat-step-desc {
       font-size: 0.92rem; color: rgba(255,255,255,0.62); line-height: 1.72; margin-bottom: 0;
@@ -673,32 +669,29 @@
   <img class="feat-wave-bg" src="FLIR Image/Wave.svg" alt="">
   <div class="wrap">
 
-    <div class="feat-head reveal">
-      <h2 class="sec-h2">Features</h2>
-    </div>
-
     <!-- Step animation layout -->
-    <div class="feat-anim-layout reveal d1">
+    <div class="feat-anim-layout reveal">
 
-      <!-- Left: step copy (auto-updates with animation) -->
+      <!-- Left: sec-h2 + step copy (auto-updates with animation) -->
       <div class="feat-steps-info">
 
-        <div class="feat-step-item active" id="fstep-1">
-          <div class="feat-step-num">01 — Connect &amp; Set Alarm</div>
-          <h3 class="feat-h3">Enable alarms.<br>Return to live view.</h3>
-          <p class="feat-step-desc">Select any connected device and configure its high and low alarm thresholds. Toggle the alarm on and tap back to return to the live dashboard — your settings are saved instantly.</p>
-        </div>
+        <h2 class="sec-h2" style="margin-bottom:48px">Features</h2>
 
-        <div class="feat-step-item" id="fstep-2">
-          <div class="feat-step-num">02 — Live Monitoring</div>
-          <h3 class="feat-h3">All meters.<br>One live screen.</h3>
-          <p class="feat-step-desc">Watch Humidity and Sound Level values shift in real-time as conditions change. When a reading demands a closer look, tap its card to drill into the full measurement detail.</p>
-        </div>
+        <div class="feat-steps-body">
+          <div class="feat-step-item active" id="fstep-1">
+            <h3 class="feat-h3">Enable alarms.<br>Return to live view.</h3>
+            <p class="feat-step-desc">Select any connected device and configure its high and low alarm thresholds. Toggle the alarm on and tap back to return to the live dashboard — your settings are saved instantly.</p>
+          </div>
 
-        <div class="feat-step-item" id="fstep-3">
-          <div class="feat-step-num">03 — Inspect &amp; Report</div>
-          <h3 class="feat-h3">Tap any point.<br>See the exact moment.</h3>
-          <p class="feat-step-desc">The detail view renders a full measurement graph with alarm threshold lines. Switch to light mode for bright environments, or export a timestamped PDF report directly from the app.</p>
+          <div class="feat-step-item" id="fstep-2">
+            <h3 class="feat-h3">All meters.<br>One live screen.</h3>
+            <p class="feat-step-desc">Watch Humidity and Sound Level values shift in real-time as conditions change. When a reading demands a closer look, tap its card to drill into the full measurement detail.</p>
+          </div>
+
+          <div class="feat-step-item" id="fstep-3">
+            <h3 class="feat-h3">Tap any point.<br>See the exact moment.</h3>
+            <p class="feat-step-desc">The detail view renders a full measurement graph with alarm threshold lines. Switch to light mode for bright environments, or export a timestamped PDF report directly from the app.</p>
+          </div>
         </div>
 
         <!-- Step progress dots -->
