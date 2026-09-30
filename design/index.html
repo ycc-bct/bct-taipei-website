@@ -239,7 +239,7 @@ section{padding:clamp(72px,10vw,140px) 0;scroll-margin-top:72px}
 #nav.on-hero:not(.menuopen) .menu>a,#nav.on-hero:not(.menuopen) .droptrig,#nav.on-hero:not(.menuopen) .langsw button{color:#E8EBEF}
 #nav.on-hero:not(.menuopen) .navburger span{background:#fff}
 #nav.on-hero:not(.menuopen) .menu>a::after,#nav.on-hero:not(.menuopen) .droptrig::after{background:#59BBF6}
-#capabilities{padding-top:clamp(72px,10vw,140px)}
+
 @media(max-width:760px){
  .hero{padding-top:88px;padding-bottom:12px}
  .hero-top{gap:16px}
@@ -264,25 +264,42 @@ section{padding:clamp(72px,10vw,140px) 0;scroll-margin-top:72px}
 .stat b{display:block;font-size:var(--text-heading);font-weight:700;letter-spacing:-.02em;line-height:1}
 .stat span{display:block;margin-top:10px;font-size:var(--text-small);color:var(--ink-3)}
 
-/* ---------- What we do: editorial list ---------- */
-.wwd-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:64px}
-.wwd-head h2{margin-top:16px;max-width:650px}
+/* ---------- What we do: service gallery ---------- */
+.wwd-head{margin-bottom:56px}
+.wwd-head h2{margin-top:16px;max-width:650px;text-wrap:balance}
 .wwd-head h2 span{color:inherit}
-.svc-list{list-style:none;border-top:1px solid var(--sand)}
-.svc{scroll-margin-top:90px;display:grid;grid-template-columns:minmax(0,1fr) 56px minmax(0,1.3fr);column-gap:32px;align-items:start;padding:36px 0;border-bottom:1px solid var(--sand)}
-.svc-media{margin:0;width:clamp(160px,18vw,220px);max-width:100%}
-.svc-image{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:10px;background:#E9E5F2}
-.svc-image img{width:100%;height:100%;object-fit:contain}
-.svc-image.phone{background:#EEEAF5;padding:8px}
-.svc-image.phone img{width:auto;max-width:100%}
-.svc-image.flir{background:#1B2632;padding:8px}
-.svc-num{font-size:var(--text-subheading);line-height:1.2;font-weight:400;letter-spacing:-.04em;padding-top:2px}
-.svc h3{margin-bottom:14px}
-.svc-body p{font-size:var(--text-body);line-height:var(--leading-body);color:var(--ink-3);max-width:38em}
-.svc-case-name,.svc-link{display:inline-flex;align-items:center;gap:12px;font-size:var(--text-small);font-weight:600;margin-top:17px;color:var(--ink-2)}
-.svc-link{padding-bottom:3px;border-bottom:1px solid var(--stone)}
-.svc-link:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
-.svc-link:hover{color:var(--blue-deep);border-color:var(--blue)}
+.wwd-showcase{display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,1.5fr);gap:36px;align-items:stretch;min-height:540px}
+.wwd-visual{display:grid;min-width:0;grid-column:2;grid-row:1}
+.wwd-showcase>.svc-list{grid-column:1;grid-row:1}
+.wwd-visual figure{grid-area:1/1;margin:0;opacity:0;visibility:hidden;transform:translateY(14px) scale(.98);transition:opacity .45s ease,transform .6s var(--ease),visibility .45s;pointer-events:none}
+.wwd-visual figure.active{opacity:1;visibility:visible;transform:none}
+.wwd-visual .svc-image{height:clamp(360px,42vw,580px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#E9E5F2;border-radius:12px;padding:24px}
+.wwd-visual img{width:100%;height:100%;object-fit:contain}
+.wwd-visual .flir{background:#1B2632;padding:36px}
+.wwd-visual .phone{background:#EEEAF5;padding:28px}
+.wwd-visual .reel{background:#17122A;padding:0}
+.wwd-visual .reel video{display:block;width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){.wwd-visual .reel video{object-fit:contain}}
+.svc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.svc{flex:0 0 auto;scroll-margin-top:110px;border-bottom:1px solid var(--sand);padding:22px 0}
+.svc.active{flex-grow:1}
+.svc:first-child{border-top:1px solid var(--sand)}
+.svc h3{margin:0}
+.svc-toggle{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;letter-spacing:inherit;color:var(--ink-3);cursor:pointer;transition:color .25s}
+.svc-title{display:inline-flex;align-items:baseline;gap:16px}
+.svc-number{font-size:var(--text-small);font-weight:400;letter-spacing:0;color:var(--ink-3)}
+.svc-toggle::after{content:'+';font-size:24px;font-weight:400}
+.svc.active .svc-toggle{color:var(--ink)}
+.svc.active .svc-toggle::after{content:'−'}
+.svc-toggle:hover{color:var(--ink)}
+.svc-toggle:focus-visible{outline:2px solid var(--blue);outline-offset:6px;border-radius:2px}
+.svc-detail{padding-top:20px;animation:svc-reveal .4s ease both}
+.svc-detail[hidden]{display:none}
+.svc-detail p{font-size:var(--text-body);line-height:var(--leading-body);color:var(--ink-3)}
+.svc-offerings{display:flex;flex-direction:column;gap:8px;list-style:none;padding:0;margin:20px 0 0;font-size:var(--text-small);font-weight:600;color:var(--blue)}
+@keyframes svc-reveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(max-width:1080px){.wwd-showcase{grid-template-columns:minmax(270px,1fr) minmax(0,1.2fr);gap:28px}}
+@media(max-width:760px){.wwd-visual{grid-column:1;grid-row:1}.wwd-showcase>.svc-list{grid-column:1;grid-row:2}.wwd-head{margin-bottom:32px}.wwd-showcase{grid-template-columns:1fr;gap:24px;min-height:0}.wwd-visual .svc-image{height:360px}.svc{padding:18px 0}}
 /* ---------- Process ---------- */
 .process{background:var(--paper);border-radius:clamp(28px,4vw,48px);margin:0 clamp(8px,1.5vw,20px)}
 .steps{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:20px;counter-reset:s}
@@ -357,16 +374,36 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
   .cta-card,.wwd-head{grid-template-columns:1fr}
   .beliefs{grid-template-columns:1fr}
   .wwd-head{align-items:flex-start;flex-direction:column;gap:24px;margin-bottom:40px}
-  .svc{grid-template-columns:minmax(120px,.7fr) 36px minmax(0,1.5fr);column-gap:20px}
-  .svc-media{width:100%;max-width:200px}
   .cta-art{width:min(80%,300px)}
 }
 @media (max-width:560px){
   .steps{grid-template-columns:1fr}
-  .svc{grid-template-columns:36px minmax(0,1fr);gap:20px 12px;padding:28px 0}
-  .svc-media{grid-column:2;grid-row:1;width:170px}
-  .svc-num{grid-column:1;grid-row:1;font-size:var(--text-subheading)}
-  .svc-body{grid-column:2;grid-row:2}
+}
+/* Fit the service gallery to one viewport; allow short screens to grow. */
+#capabilities{--section-pad:clamp(32px,5vh,64px);--section-top:calc(var(--header-height,72px) + var(--section-pad));min-height:100vh;min-height:100svh;padding:var(--section-top) 0 var(--section-pad);display:flex;align-items:center}
+#capabilities>.wrap{width:100%;max-width:none;padding-inline:6vw}
+#capabilities .wwd-head{margin-bottom:clamp(36px,5vh,60px)}
+#capabilities .wwd-showcase{min-height:calc(100svh - var(--section-top) - var(--section-pad));grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);grid-template-rows:auto 1fr;column-gap:48px;row-gap:0}
+#capabilities .wwd-head{grid-column:1;grid-row:1}
+#capabilities .svc-list{grid-column:1;grid-row:2}
+#capabilities .wwd-visual{grid-column:2;grid-row:1 / 3}
+#capabilities .wwd-visual{height:100%;min-height:0;position:relative}
+#capabilities .wwd-visual figure{position:absolute;inset:0}
+#capabilities .wwd-visual figure{min-height:0}
+#capabilities .wwd-visual .svc-image{height:100%;min-height:0}
+
+@media(max-width:760px){
+  #capabilities{--section-pad:28px}
+  #capabilities .wwd-head h2{font-size:var(--text-subheading);margin-top:8px}
+  #capabilities .wwd-showcase{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:16px;min-height:0}
+  #capabilities .wwd-head{grid-column:1;grid-row:1;margin-bottom:12px}
+  #capabilities .svc-list{grid-column:1;grid-row:3}
+  #capabilities .wwd-visual{grid-column:1;grid-row:2}
+  #capabilities .wwd-visual{height:clamp(160px,24svh,260px)}
+  #capabilities .wwd-visual .svc-image{height:100%;min-height:0;padding:12px}
+  #capabilities .svc{padding:12px 0}
+  #capabilities .svc-detail{padding-top:12px}
+  #capabilities .svc-offerings{margin-top:12px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -456,7 +493,7 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
       <a class="work-card" data-card="0" href="#service-research" aria-label="Genome Cache"><div class="work-card-surface"><img src="assets/genome-research.png" alt=""></div></a>
       <a class="work-card" data-card="1" href="#service-ui" aria-label="FLIR METERLiNK App"><div class="work-card-surface"><img src="assets/flir-monitoring.webp" alt="" fetchpriority="high"></div></a>
       <a class="work-card" data-card="2" href="#service-inhouse" aria-label="Weekday"><div class="work-card-surface"><img src="assets/weekday-booking.png" alt=""></div></a>
-      <a class="work-card" data-card="3" href="#service-ai" aria-label="Office Power"><div class="work-card-surface"><img src="assets/officepower-console.png" alt=""></div></a>
+      <a class="work-card" data-card="3" href="#service-inhouse" aria-label="Office Power"><div class="work-card-surface"><img src="assets/officepower-console.png" alt=""></div></a>
     </div></div>
     <div class="hero-caption" aria-hidden="true">
       <div aria-live="polite" aria-atomic="true"><p class="hero-project" id="hero-project">FLIR METERLiNK App</p><p class="hero-promise" id="hero-promise">Make complex information clear.</p></div>
@@ -468,32 +505,14 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
 <!-- ================= WHAT WE DO ================= -->
 <section id="capabilities">
   <div class="wrap">
+    <div class="wwd-showcase">
     <div class="wwd-head">
-      <div><span class="eyebrow rv">What we do</span><h2 class="rv">From understanding problems<br><span>to building products.</span></h2></div>
+      <div><span class="eyebrow rv">What we do</span><h2 class="rv">From understanding problems to building products.</h2></div>
 
     </div>
-    <ol class="svc-list">
-      <li class="svc" id="service-research">
-        <figure class="svc-media"><div class="svc-image "><img src="assets/genome-research.png" alt="Review of readability, consistency and screen adaptation in the original Genome Cache app" loading="lazy"></div></figure>
-        <span class="svc-num">01</span>
-        <div class="svc-body"><h3>Research</h3><p>Understand what needs to change. We explore usability and learning motivation to guide design. For Genome Cache, that meant identifying readability and consistency issues, then shaping a more engaging, game-based learning experience.</p><span class="svc-case-name">Genome Cache</span></div>
-      </li>
-      <li class="svc" id="service-ui">
-        <figure class="svc-media"><div class="svc-image flir"><img src="assets/flir-monitoring.webp" alt="FLIR METERLiNK live monitoring interface" loading="lazy"></div></figure>
-        <span class="svc-num">02</span>
-        <div class="svc-body"><h3>UI Design</h3><p>Clear interfaces, consistent systems. We make complex information easier to understand and build the visual foundations that keep products coherent. FLIR METERLiNK brings live readings, alerts and measurement trends into one mobile experience.</p><a class="svc-link" href="https://bct-tpe.github.io/bct-tpe/work/flir/flir.html">FLIR METERLiNK App <span aria-hidden="true">↗</span></a></div>
-      </li>
-      <li class="svc" id="service-inhouse">
-        <figure class="svc-media"><div class="svc-image phone"><img src="assets/weekday-booking.png" alt="Weekday design showing floor-plan seat selection and a Book Desk panel" loading="lazy"></div></figure>
-        <span class="svc-num">03</span>
-        <div class="svc-body"><h3>In-house</h3><p>Our ideas, made tangible. We explore everyday needs through product design and prototyping. Weekday brings floor-plan seat selection, desk reservations and workspace management together for a simpler day at the office.</p><span class="svc-case-name">Weekday</span></div>
-      </li>
-      <li class="svc" id="service-ai">
-        <figure class="svc-media"><div class="svc-image "><img src="assets/officepower-console.png" alt="Office Power website showing its AI agent management dashboard" loading="lazy"></div></figure>
-        <span class="svc-num">04</span>
-        <div class="svc-body"><h3>AI Products</h3><p>AI built for everyday work. We connect clear interactions with company knowledge and practical controls. Office Power brings AI agents into work channels, with management tools for setup, budgets, keywords and permissions.</p><a class="svc-link" href="https://officepower-website.pages.dev/">Office Power <span aria-hidden="true">↗</span></a></div>
-      </li>
-    </ol>
+      <div class="wwd-visual"><figure class="svc-media active" id="svc-visual-0" aria-hidden="false"><div class="svc-image "><img src="assets/genome-research.png" alt="Review of readability, consistency and screen adaptation in the original Genome Cache app" loading="lazy"></div></figure><figure class="svc-media" id="svc-visual-1" aria-hidden="true"><div class="svc-image flir"><img src="assets/flir-monitoring.webp" alt="FLIR METERLiNK live monitoring interface" loading="lazy"></div></figure><figure class="svc-media" id="svc-visual-2" aria-hidden="true"><div class="svc-image reel"><video class="svc-reel" src="assets/weekday-showreel.mp4" poster="assets/weekday-showreel-poster.jpg" muted loop playsinline preload="auto" aria-label="15-second Weekday showreel: booking a desk on the floor plan, managing workspaces and zones, and the app's design system"></video></div></figure></div>
+      <ol class="svc-list"><li class="svc active" id="service-research"><h3><button class="svc-toggle" id="svc-toggle-0" aria-expanded="true" aria-controls="svc-detail-0"><span class="svc-title"><span class="svc-number" aria-hidden="true">01</span><span>Research</span></span></button></h3><div class="svc-detail" id="svc-detail-0" role="region" aria-labelledby="svc-toggle-0"><p>Find the right problem to solve. We explore user needs, review existing experiences and test assumptions to help teams decide what matters most—and where to go next.</p><ul class="svc-offerings" aria-label="Research services"><li>UX Research</li><li>Usability Testing</li></ul></div></li><li class="svc" id="service-ui"><h3><button class="svc-toggle" id="svc-toggle-1" aria-expanded="false" aria-controls="svc-detail-1"><span class="svc-title"><span class="svc-number" aria-hidden="true">02</span><span>Design</span></span></button></h3><div class="svc-detail" id="svc-detail-1" role="region" aria-labelledby="svc-toggle-1" hidden><p>Make complex products feel simple. We turn insights into clear interfaces, reusable design systems and interactive prototypes, helping teams align on the experience before development begins.</p><ul class="svc-offerings" aria-label="Design services"><li>UI Design</li><li>Design System</li><li>Prototype</li></ul></div></li><li class="svc" id="service-inhouse"><h3><button class="svc-toggle" id="svc-toggle-2" aria-expanded="false" aria-controls="svc-detail-2"><span class="svc-title"><span class="svc-number" aria-hidden="true">03</span><span>In-house</span></span></button></h3><div class="svc-detail" id="svc-detail-2" role="region" aria-labelledby="svc-toggle-2" hidden><p>We design for our own teams, too. From the BCT Website and presentation decks to Weekday, our work spans brand communication and tools for everyday work. We also explore AI products through Office Power, bringing AI agents into the workplace.</p><ul class="svc-offerings" aria-label="In-house services"><li>AI Products — Office Power</li></ul></div></li></ol>
+    </div>
   </div>
 </section>
 
@@ -623,6 +642,10 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
 (() => {
   /* header hides on scroll down, returns on scroll up (same as main site) */
   const nav = document.getElementById('nav');
+  const syncHeaderHeight=()=>document.documentElement.style.setProperty('--header-height',nav.offsetHeight+'px');
+  syncHeaderHeight();
+  if('ResizeObserver' in window)new ResizeObserver(syncHeaderHeight).observe(nav);
+  else addEventListener('resize',syncHeaderHeight);
   const hero = document.querySelector('.hero');
   const updateNavTone = () => nav.classList.toggle('on-hero', hero.getBoundingClientRect().bottom > 75);
   updateNavTone();
@@ -698,6 +721,63 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
   navmenu.querySelectorAll('.nm-worktrig').forEach(wt =>
     wt.addEventListener('click', () => { const w = wt.closest('.nm-work'), o = w.classList.toggle('open'); wt.setAttribute('aria-expanded', o); }));
   navmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+
+  /* Service titles control the central visual and their own details. */
+  const svcItems = [...document.querySelectorAll('.svc')];
+  const svcVisuals = [...document.querySelectorAll('.wwd-visual figure')];
+  /* Weekday showreel: plays only while its panel is showing and in view */
+  const reel = document.querySelector('.svc-reel');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const syncReel = () => {
+    if (!reel) return;
+    const r = reel.getBoundingClientRect();
+    const inView = r.bottom > innerHeight * .15 && r.top < innerHeight * .85;
+    const show = inView && reel.closest('figure').classList.contains('active') && !reduceMotion;
+    if (show) { if (reel.paused) reel.play().catch(() => {}); } else if (!reel.paused) reel.pause();
+  };
+  if (reel) reel.addEventListener('canplay', syncReel);
+  if (reel && 'IntersectionObserver' in window) {
+    new IntersectionObserver(syncReel, {threshold: [0, .25, .5]}).observe(reel);
+  }
+  const svcMotions = new Map();
+  const activateSvc = index => {
+    if(svcItems[index].classList.contains('active'))return;
+    const before=svcItems.map(item=>item.getBoundingClientRect().height);
+    svcMotions.forEach(animation=>animation.cancel());
+    svcMotions.clear();
+    svcItems.forEach((item,i) => {
+      item.classList.toggle('active',i===index);
+      item.querySelector('button').setAttribute('aria-expanded',String(i===index));
+      item.querySelector('.svc-detail').hidden=i!==index;
+      svcVisuals[i].classList.toggle('active',i===index);
+      svcVisuals[i].setAttribute('aria-hidden',String(i!==index));
+    });
+    syncReel();
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      const after=svcItems.map(item=>item.getBoundingClientRect().height);
+      svcItems.forEach((item,i)=>{
+        const animation=item.animate([
+          {height:before[i]+'px',flex:'0 0 auto',overflow:'hidden'},
+          {height:after[i]+'px',flex:'0 0 auto',overflow:'hidden'}
+        ],{duration:520,easing:'cubic-bezier(.22,1,.36,1)'});
+        svcMotions.set(item,animation);
+        animation.onfinish=()=>{if(svcMotions.get(item)===animation)svcMotions.delete(item);};
+      });
+    }
+  };
+  svcItems.forEach((item,index) => {
+    const button=item.querySelector('button');
+    button.addEventListener('click',()=>activateSvc(index));
+    button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')activateSvc(index);});
+    button.addEventListener('keydown',e=>{
+      if(!['ArrowDown','ArrowUp','Home','End'].includes(e.key))return;
+      e.preventDefault();
+      const next=e.key==='Home'?0:e.key==='End'?svcItems.length-1:(index+(e.key==='ArrowDown'?1:-1)+svcItems.length)%svcItems.length;
+      activateSvc(next);svcItems[next].querySelector('button').focus();
+    });
+  });
+  const svcFromHash=()=>{const i=svcItems.findIndex(item=>'#'+item.id===location.hash);if(i>=0)activateSvc(i);};
+  addEventListener('hashchange',svcFromHash);svcFromHash();
 
   const targets = document.querySelectorAll('.rv, #steps');
   if (!('IntersectionObserver' in window)) { targets.forEach(el => el.classList.add('in')); return; }
