@@ -188,16 +188,16 @@ section{padding:clamp(72px,10vw,140px) 0;scroll-margin-top:72px}
 .rv.in{opacity:1;transform:none}
 
 /* ---------- Hero: interactive work stage ---------- */
-.hero{background:#111315;color:#F7F4EF;height:100vh;height:100svh;padding:100px 0 20px;overflow:hidden;position:relative}
+.hero{background:var(--paper);color:var(--ink);height:100vh;height:100svh;padding:100px 0 20px;overflow:hidden;position:relative}
 .hero .wrap{max-width:1440px;width:100%;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto}
 .hero-top{display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;position:relative;z-index:2}
 .hero h1{font-family:var(--font-sans);font-size:var(--text-display);font-weight:600;line-height:var(--leading-heading);max-width:960px;letter-spacing:-.02em}
-.hero h1 .hero-outcome{color:#8F979E}
+.hero h1 .hero-outcome{color:var(--ink-3)}
 .hero-word{position:relative;display:inline-block;color:inherit;white-space:nowrap}
 .research-char{display:inline-block;animation:research-focus 9s ease-in-out infinite;animation-delay:calc(.2s + var(--char-index)*.08s)}
 .design-solid{animation:design-fill 9s ease-in-out .4s infinite}
-.design-outline{position:absolute;inset:0;color:transparent;-webkit-text-stroke:1px #F7F4EF;clip-path:inset(0);pointer-events:none;opacity:0;animation:design-trace 9s ease-in-out .4s infinite}
-.design-nodes{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;color:#AAB7C2;opacity:0;animation:design-nodes 9s ease-in-out .4s infinite}
+.design-outline{position:absolute;inset:0;color:transparent;-webkit-text-stroke:1px var(--ink);clip-path:inset(0);pointer-events:none;opacity:0;animation:design-trace 9s ease-in-out .4s infinite}
+.design-nodes{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;color:var(--blue);opacity:0;animation:design-nodes 9s ease-in-out .4s infinite}
 .design-nodes path{fill:none;stroke:currentColor;stroke-width:.7;vector-effect:non-scaling-stroke}
 .design-nodes rect{fill:currentColor}
 @keyframes research-focus{0%,4%{filter:blur(0);opacity:1}13%{filter:blur(.095em);opacity:.55}26%,100%{filter:blur(0);opacity:1}}
@@ -208,14 +208,14 @@ section{padding:clamp(72px,10vw,140px) 0;scroll-margin-top:72px}
 @media(prefers-reduced-motion:reduce){.research-char{animation:none;filter:none;opacity:1}.design-solid{animation:none;opacity:1}.design-outline,.design-nodes{display:none}}
 
 
-.hero-intro{max-width:580px;padding-top:0;font-size:var(--text-body);font-weight:400;line-height:var(--leading-body);color:#B7BDC3}
+.hero-intro{max-width:580px;padding-top:0;font-size:var(--text-body);font-weight:400;line-height:var(--leading-body);color:var(--ink-3)}
 
 .hero-stage{min-height:0;width:100%;position:relative;max-width:1000px;margin:0 auto;isolation:isolate;perspective:1000px}
 .project-orbit{position:absolute;left:50%;top:50%;width:100%;height:70%;transform:translate(-50%,-50%);transform-origin:center;animation:orbit-arrive 2s var(--ease) both}
 .work-card{position:absolute;left:var(--left);top:var(--top);width:24%;height:80%;margin:0;padding:0;color:inherit;font:inherit;text-decoration:none;transform:translate(-50%,-50%) rotate(var(--tilt));z-index:2;cursor:pointer;animation:project-spread 2s var(--ease) both}
 .work-card.active{z-index:3}
-.work-card-surface{width:100%;height:100%;border:1px solid #FFFFFF30;border-radius:8px;overflow:hidden;box-shadow:0 18px 40px #0006;background:#152631;animation:project-float var(--duration) ease-in-out infinite;animation-delay:2s;transition:filter .5s,border-color .5s;filter:brightness(.82)}
-.work-card.active .work-card-surface{filter:brightness(1);border-color:#75C9FF88}
+.work-card-surface{width:100%;height:100%;border:1px solid #1A1A1A18;border-radius:8px;overflow:hidden;box-shadow:0 18px 40px #18253624;background:#152631;animation:project-float var(--duration) ease-in-out infinite;animation-delay:2s;transition:filter .5s,border-color .5s;filter:brightness(.97)}
+.work-card.active .work-card-surface{filter:brightness(1);border-color:var(--blue)}
 .work-card img{width:100%;height:100%;object-fit:contain}
 .work-card[data-card="0"]{--left:13%;--top:48%;--ring-x:34%;--ring-y:50%;--tilt:-7deg;--duration:6.4s}
 .work-card[data-card="1"]{--left:38%;--top:53%;--ring-x:50%;--ring-y:10%;--tilt:4deg;--duration:6.9s}
@@ -232,13 +232,8 @@ section{padding:clamp(72px,10vw,140px) 0;scroll-margin-top:72px}
 .hero.has-project .hero-caption{opacity:1;pointer-events:auto}
 .work-card:focus-visible{outline:2px solid #59BBF6;outline-offset:6px}
 .hero-project{font-size:var(--text-body);font-weight:600;line-height:var(--leading-body);margin-bottom:4px}
-.hero-promise{font-size:var(--text-body);font-weight:400;line-height:var(--leading-body);color:#B7BDC3}
+.hero-promise{font-size:var(--text-body);font-weight:400;line-height:var(--leading-body);color:var(--ink-3)}
 #nav .logo .logo-dark{display:none}
-#nav.on-hero:not(.menuopen) .logo .logo-light{display:none}
-#nav.on-hero:not(.menuopen) .logo .logo-dark{display:block}
-#nav.on-hero:not(.menuopen) .menu>a,#nav.on-hero:not(.menuopen) .droptrig,#nav.on-hero:not(.menuopen) .langsw button{color:#E8EBEF}
-#nav.on-hero:not(.menuopen) .navburger span{background:#fff}
-#nav.on-hero:not(.menuopen) .menu>a::after,#nav.on-hero:not(.menuopen) .droptrig::after{background:#59BBF6}
 
 @media(max-width:760px){
  .hero{padding-top:88px;padding-bottom:12px}
@@ -264,6 +259,21 @@ section{padding:clamp(72px,10vw,140px) 0;scroll-margin-top:72px}
 .stat b{display:block;font-size:var(--text-heading);font-weight:700;letter-spacing:-.02em;line-height:1}
 .stat span{display:block;margin-top:10px;font-size:var(--text-small);color:var(--ink-3)}
 
+/* Static office scene with centered hero copy. */
+.office-hero{background:#F8F4ED;min-height:620px;padding:clamp(110px,16vh,160px) 0 28px;isolation:isolate}
+.office-hero .office-backdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;z-index:-2}
+.office-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 32%,#fffdf9e6 0%,#fffdf999 25%,transparent 58%),linear-gradient(180deg,#fffdf955 0%,transparent 65%);z-index:-1;pointer-events:none}
+.office-hero .wrap{max-width:none;padding-inline:6vw;display:flex;justify-content:center;align-items:flex-start}
+.office-hero .hero-top{align-items:center;text-align:center;gap:24px;max-width:960px}
+.office-hero h1{font-size:var(--text-display);max-width:960px}
+.office-hero .hero-intro{max-width:580px;color:var(--ink-2)}
+.office-hero .hero-outcome{color:var(--ink-3)}
+@media(max-width:760px){
+ .office-hero{min-height:680px;padding-top:112px}
+ .office-hero .hero-top{gap:20px}
+ .office-hero .office-backdrop{object-position:50% bottom}
+ .office-hero::before{background:linear-gradient(180deg,#fffdf9d9 0%,#fffdf9b3 36%,#fffdf92b 58%,transparent 75%)}
+}
 /* ---------- What we do: service gallery ---------- */
 .wwd-head{margin-bottom:56px}
 .wwd-head h2{margin-top:16px;max-width:650px;text-wrap:balance}
@@ -277,8 +287,15 @@ section{padding:clamp(72px,10vw,140px) 0;scroll-margin-top:72px}
 .wwd-visual img{width:100%;height:100%;object-fit:contain}
 .wwd-visual .flir{background:#1B2632;padding:36px}
 .wwd-visual .phone{background:#EEEAF5;padding:28px}
+.wwd-visual .graphic{background:linear-gradient(180deg,#0A2230 0%,#081923 55%,#06131B 100%);padding:0}
+.wwd-visual .graphic img{object-fit:contain}
+.wwd-visual .graphic.flir-g{background:linear-gradient(180deg,#12121C 0%,#0B0B13 60%,#08080F 100%)}
 .wwd-visual .reel{background:#17122A;padding:0}
 .wwd-visual .reel video{display:block;width:100%;height:100%;object-fit:cover}
+.wwd-visual .reel{position:relative}
+.wwd-visual .reel-still{position:absolute;inset:0;background:linear-gradient(180deg,#EEF1F6 0%,#E6EAF1 60%,#DFE4EB 100%);opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s}
+.wwd-visual .reel-still.on{opacity:1;visibility:visible}
+.wwd-visual .reel-still img{width:100%;height:100%;object-fit:contain}
 @media(max-width:760px){.wwd-visual .reel video{object-fit:contain}}
 .svc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .svc{flex:0 0 auto;scroll-margin-top:110px;border-bottom:1px solid var(--sand);padding:22px 0}
@@ -483,21 +500,12 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
 
 <main id="top">
 <!-- ================= HERO ================= -->
-<section class="hero" aria-label="Explore our design services">
+<section class="hero office-hero" aria-label="Explore our design services">
+  <img class="office-backdrop" src="assets/hero-office-people.png" width="1672" height="941" alt="" fetchpriority="high">
   <div class="wrap">
     <div class="hero-top">
       <h1 aria-label="Research. Design. Build what’s next."><span class="hero-word research-word" aria-hidden="true"><span class="research-char" style="--char-index:0">R</span><span class="research-char" style="--char-index:1">e</span><span class="research-char" style="--char-index:2">s</span><span class="research-char" style="--char-index:3">e</span><span class="research-char" style="--char-index:4">a</span><span class="research-char" style="--char-index:5">r</span><span class="research-char" style="--char-index:6">c</span><span class="research-char" style="--char-index:7">h</span><span class="research-char" style="--char-index:8">.</span></span> <span class="hero-word design-word" aria-hidden="true"><span class="design-solid">Design.</span><span class="design-outline">Design.</span><svg class="design-nodes" viewBox="0 0 240 74" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12H238V61H2Z M44 12V61 M88 12V61 M126 12V61 M145 12V61 M190 12V61"/><rect x="0.30000000000000004" y="10.3" width="3.4" height="3.4"/><rect x="0.30000000000000004" y="59.3" width="3.4" height="3.4"/><rect x="42.3" y="10.3" width="3.4" height="3.4"/><rect x="42.3" y="59.3" width="3.4" height="3.4"/><rect x="86.3" y="10.3" width="3.4" height="3.4"/><rect x="86.3" y="59.3" width="3.4" height="3.4"/><rect x="124.3" y="10.3" width="3.4" height="3.4"/><rect x="124.3" y="59.3" width="3.4" height="3.4"/><rect x="143.3" y="10.3" width="3.4" height="3.4"/><rect x="143.3" y="59.3" width="3.4" height="3.4"/><rect x="188.3" y="10.3" width="3.4" height="3.4"/><rect x="188.3" y="59.3" width="3.4" height="3.4"/><rect x="236.3" y="10.3" width="3.4" height="3.4"/><rect x="236.3" y="59.3" width="3.4" height="3.4"/></svg></span><br><span class="hero-outcome">Build what’s next.</span></h1>
       <p class="hero-intro">Find the right problem. Make the complex feel simple.<br>We design alongside engineers to turn ideas into products people can use.</p>
-    </div>
-    <div class="hero-stage" aria-label="Explore projects"><div class="project-orbit">
-      <a class="work-card" data-card="0" href="#service-research" aria-label="Genome Cache"><div class="work-card-surface"><img src="assets/genome-research.png" alt=""></div></a>
-      <a class="work-card" data-card="1" href="#service-ui" aria-label="FLIR METERLiNK App"><div class="work-card-surface"><img src="assets/flir-monitoring.webp" alt="" fetchpriority="high"></div></a>
-      <a class="work-card" data-card="2" href="#service-inhouse" aria-label="Weekday"><div class="work-card-surface"><img src="assets/weekday-booking.png" alt=""></div></a>
-      <a class="work-card" data-card="3" href="#service-inhouse" aria-label="Office Power"><div class="work-card-surface"><img src="assets/officepower-console.png" alt=""></div></a>
-    </div></div>
-    <div class="hero-caption" aria-hidden="true">
-      <div aria-live="polite" aria-atomic="true"><p class="hero-project" id="hero-project">FLIR METERLiNK App</p><p class="hero-promise" id="hero-promise">Make complex information clear.</p></div>
-
     </div>
   </div>
 </section>
@@ -510,8 +518,8 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
       <div><span class="eyebrow rv">What we do</span><h2 class="rv">From understanding problems to building products.</h2></div>
 
     </div>
-      <div class="wwd-visual"><figure class="svc-media active" id="svc-visual-0" aria-hidden="false"><div class="svc-image "><img src="assets/genome-research.png" alt="Review of readability, consistency and screen adaptation in the original Genome Cache app" loading="lazy"></div></figure><figure class="svc-media" id="svc-visual-1" aria-hidden="true"><div class="svc-image flir"><img src="assets/flir-monitoring.webp" alt="FLIR METERLiNK live monitoring interface" loading="lazy"></div></figure><figure class="svc-media" id="svc-visual-2" aria-hidden="true"><div class="svc-image reel"><video class="svc-reel" src="assets/weekday-showreel.mp4" poster="assets/weekday-showreel-poster.jpg" muted loop playsinline preload="auto" aria-label="15-second Weekday showreel: booking a desk on the floor plan, managing workspaces and zones, and the app's design system"></video></div></figure></div>
-      <ol class="svc-list"><li class="svc active" id="service-research"><h3><button class="svc-toggle" id="svc-toggle-0" aria-expanded="true" aria-controls="svc-detail-0"><span class="svc-title"><span class="svc-number" aria-hidden="true">01</span><span>Research</span></span></button></h3><div class="svc-detail" id="svc-detail-0" role="region" aria-labelledby="svc-toggle-0"><p>Find the right problem to solve. We explore user needs, review existing experiences and test assumptions to help teams decide what matters most—and where to go next.</p><ul class="svc-offerings" aria-label="Research services"><li>UX Research</li><li>Usability Testing</li></ul></div></li><li class="svc" id="service-ui"><h3><button class="svc-toggle" id="svc-toggle-1" aria-expanded="false" aria-controls="svc-detail-1"><span class="svc-title"><span class="svc-number" aria-hidden="true">02</span><span>Design</span></span></button></h3><div class="svc-detail" id="svc-detail-1" role="region" aria-labelledby="svc-toggle-1" hidden><p>Make complex products feel simple. We turn insights into clear interfaces, reusable design systems and interactive prototypes, helping teams align on the experience before development begins.</p><ul class="svc-offerings" aria-label="Design services"><li>UI Design</li><li>Design System</li><li>Prototype</li></ul></div></li><li class="svc" id="service-inhouse"><h3><button class="svc-toggle" id="svc-toggle-2" aria-expanded="false" aria-controls="svc-detail-2"><span class="svc-title"><span class="svc-number" aria-hidden="true">03</span><span>In-house</span></span></button></h3><div class="svc-detail" id="svc-detail-2" role="region" aria-labelledby="svc-toggle-2" hidden><p>We design for our own teams, too. From the BCT Website and presentation decks to Weekday, our work spans brand communication and tools for everyday work. We also explore AI products through Office Power, bringing AI agents into the workplace.</p><ul class="svc-offerings" aria-label="In-house services"><li>AI Products — Office Power</li></ul></div></li></ol>
+      <div class="wwd-visual"><figure class="svc-media active" id="svc-visual-0" aria-hidden="false"><div class="svc-image graphic"><img src="assets/genome-research-visual.webp" alt="Genome Cache before and after: the v1.0 quiz screen with four problems marked, and the v2.0 redesign answering each with readable type, one UI kit, responsive layouts and rewards; results: 4.8 CSAT score and 40% more time in the app" width="1200" height="1200"></div></figure><figure class="svc-media" id="svc-visual-1" aria-hidden="true"><div class="svc-image graphic flir-g"><img src="assets/flir-design-visual.webp" alt="FLIR METERLiNK design: a FLIR DM166 thermal multimeter sends readings over Bluetooth to the app, shown as device cards for AC voltage, temperature, humidity and sound level, with a floating measurement chart card annotated with spec lines and the design system's colours, typefaces and button states below" width="1200" height="1200" loading="lazy"></div></figure><figure class="svc-media" id="svc-visual-2" aria-hidden="true"><div class="svc-image reel"><video class="svc-reel" src="assets/weekday-showreel.mp4" poster="assets/weekday-showreel-poster.jpg" muted playsinline preload="auto" aria-label="15-second Weekday showreel: booking a desk on the floor plan, managing workspaces and zones, and the app's design system"></video><div class="reel-still" aria-hidden="true"><img src="assets/officepower-visual.webp" alt="Office Power: an isometric 3D office where HR, IT, finance and sales AI agents each work at their own desk, with an HR agent chat preparing a leave request and a budget card showing $1,729 of $1,900 used" width="1200" height="1200" loading="lazy"></div></div></figure></div>
+      <ol class="svc-list"><li class="svc active" id="service-research"><h3><button class="svc-toggle" id="svc-toggle-0" aria-expanded="true" aria-controls="svc-detail-0"><span class="svc-title"><span class="svc-number" aria-hidden="true">01</span><span>Research</span></span></button></h3><div class="svc-detail" id="svc-detail-0" role="region" aria-labelledby="svc-toggle-0"><p>Find the right problem to solve. We explore user needs, review existing experiences and test assumptions to help teams decide what matters most—and where to go next.</p><ul class="svc-offerings" aria-label="Research services"><li>UX Research</li><li>Usability Testing</li></ul></div></li><li class="svc" id="service-ui"><h3><button class="svc-toggle" id="svc-toggle-1" aria-expanded="false" aria-controls="svc-detail-1"><span class="svc-title"><span class="svc-number" aria-hidden="true">02</span><span>Design</span></span></button></h3><div class="svc-detail" id="svc-detail-1" role="region" aria-labelledby="svc-toggle-1" hidden><p>Make complex products feel simple. We turn insights into clear interfaces, reusable design systems and interactive prototypes, helping teams align on the experience before development begins.</p><ul class="svc-offerings" aria-label="Design services"><li>UI Design</li><li>Design System</li><li>Prototype</li></ul></div></li><li class="svc" id="service-inhouse"><h3><button class="svc-toggle" id="svc-toggle-2" aria-expanded="false" aria-controls="svc-detail-2"><span class="svc-title"><span class="svc-number" aria-hidden="true">03</span><span>In-house</span></span></button></h3><div class="svc-detail" id="svc-detail-2" role="region" aria-labelledby="svc-toggle-2" hidden><p>We design for our own teams, too. From the BCT Website and presentation decks to Weekday, our work spans brand communication and tools for everyday work. We also explore AI products through Office Power, bringing AI agents into the workplace.</p><ul class="svc-offerings" aria-label="In-house services"><li>Weekday</li><li>Office Power - AI product</li></ul></div></li></ol>
     </div>
   </div>
 </section>
@@ -651,53 +659,6 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
   updateNavTone();
   addEventListener('scroll', updateNavTone, {passive:true});
   addEventListener('resize', updateNavTone);
-  const services = [
-    ['Genome Cache','Find the problem worth solving.','Research','research'],
-    ['FLIR METERLiNK App','Make complex information clear.','UI Design','ui'],
-    ['Weekday','Turn everyday needs into products.','In-house','inhouse'],
-    ['Office Power','Bring AI into everyday work.','AI Products','ai']
-  ];
-  const cards = [...document.querySelectorAll('.work-card')];
-  const selectService = index => {
-
-    cards.forEach((card,i) => card.classList.toggle('active',i===index));
-    document.getElementById('hero-project').textContent=services[index][0];
-    document.getElementById('hero-promise').textContent=services[index][1];
-
-
-  };
-  const caption = document.querySelector('.hero-caption');
-  const showProject = index => {
-    selectService(index);
-    hero.classList.add('has-project');
-    caption.setAttribute('aria-hidden','false');
-
-  };
-  const hideProject = () => {
-    hero.classList.remove('has-project');
-    caption.setAttribute('aria-hidden','true');
-
-    cards.forEach(card=>card.classList.remove('active'));
-
-  };
-  cards.forEach((card,index)=>{
-    card.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')showProject(index);});
-    card.addEventListener('focus',()=>showProject(index));
-    card.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse' && !caption.contains(e.relatedTarget))hideProject();});
-    card.addEventListener('click',e=>{
-      if(matchMedia('(hover:none)').matches && !card.classList.contains('touch-selected')){
-        e.preventDefault();
-        cards.forEach(c=>c.classList.remove('touch-selected'));
-        card.classList.add('touch-selected');showProject(index);
-      }
-    });
-  });
-  document.querySelector('.hero-stage').addEventListener('pointerleave',e=>{
-    if(e.pointerType==='mouse' && !caption.contains(e.relatedTarget))hideProject();
-  });
-  hero.addEventListener('focusout',e=>{if(!cards.some(c=>c.contains(e.relatedTarget)) && !caption.contains(e.relatedTarget))hideProject();});
-  hero.addEventListener('pointerleave',hideProject);
-  hero.addEventListener('keydown',e=>{if(e.key==='Escape')hideProject();});
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry])=>hero.classList.toggle('motion-paused',!entry.isIntersecting)).observe(hero);
   }
@@ -733,8 +694,28 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
     const r = reel.getBoundingClientRect();
     const inView = r.bottom > innerHeight * .15 && r.top < innerHeight * .85;
     const show = inView && reel.closest('figure').classList.contains('active') && !reduceMotion;
+    if (reelPhase === 'still') {
+      // Office Power still: counts down only while visible, then hands back to the video
+      if (show && !stillTimer) stillTimer = setTimeout(endStill, STILL_MS);
+      if (!show && stillTimer) { clearTimeout(stillTimer); stillTimer = 0; }
+      return;
+    }
     if (show) { if (reel.paused) reel.play().catch(() => {}); } else if (!reel.paused) reel.pause();
   };
+  /* In-house cycle: Weekday showreel → Office Power still (5s) → showreel … */
+  const still = document.querySelector('.reel-still');
+  const STILL_MS = 5000;
+  let reelPhase = 'video', stillTimer = 0;
+  const endStill = () => {
+    stillTimer = 0; reelPhase = 'video';
+    still.classList.remove('on'); still.setAttribute('aria-hidden', 'true');
+    reel.currentTime = 0; syncReel();
+  };
+  if (reel && still) reel.addEventListener('ended', () => {
+    reelPhase = 'still';
+    still.classList.add('on'); still.setAttribute('aria-hidden', 'false');
+    syncReel();
+  });
   if (reel) reel.addEventListener('canplay', syncReel);
   if (reel && 'IntersectionObserver' in window) {
     new IntersectionObserver(syncReel, {threshold: [0, .25, .5]}).observe(reel);
