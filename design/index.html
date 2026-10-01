@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <style>
 :root{
   --font-sans:"General Sans",-apple-system,system-ui,"Segoe UI",Roboto,"PingFang TC","Noto Sans TC",sans-serif;
@@ -417,7 +418,7 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
   #capabilities .svc-list{grid-column:1;grid-row:3}
   #capabilities .wwd-visual{grid-column:1;grid-row:2}
   #capabilities .wwd-visual{height:clamp(160px,24svh,260px)}
-  #capabilities .wwd-visual .svc-image{height:100%;min-height:0;padding:12px}
+  #capabilities .wwd-visual .svc-image{height:100%;min-height:0;padding:0}
   #capabilities .svc{padding:12px 0}
   #capabilities .svc-detail{padding-top:12px}
   #capabilities .svc-offerings{margin-top:12px}
@@ -618,6 +619,31 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
 @media(max-width:700px){.canvas-card{width:min(340px,calc(100vw - 40px));padding:24px 18px}}
 
 /* END merged How we work */
+/* Research case study: square artwork with overlaid pagination. */
+.wwd-visual figure.active{pointer-events:auto}
+#capabilities .wwd-visual{width:100%;max-width:800px;height:auto;max-height:800px;aspect-ratio:1;align-self:center;justify-self:center}
+.research-carousel{container-type:inline-size;position:relative;width:100%;height:100%;max-height:800px;aspect-ratio:1}
+#capabilities .research-stage{position:relative;padding:0;background:#001e2e}
+.research-stage .research-slide{position:absolute;inset:0;display:block;object-fit:contain;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s}
+.research-stage .research-slide.is-current{opacity:1;visibility:visible}
+.research-slide>img{display:block;width:100%;height:100%;object-fit:contain}
+.case-heading{position:absolute;left:var(--heading-x);top:var(--heading-y);width:var(--heading-width);margin:0;font-family:"Poppins",var(--font-sans);font-size:5.741627cqw;font-weight:600;line-height:1.1;letter-spacing:0;text-align:var(--heading-align);text-box-trim:trim-both;text-box-edge:cap alphabetic;overflow-wrap:break-word}
+.case-heading span{display:block}
+.case-heading .case-heading-lavender{padding-bottom:.25em;margin-bottom:-.25em;color:#a5a6f5;background:linear-gradient(90deg,#93a4ed,#b7a7fe);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.case-label{position:absolute;display:flex;align-items:center;justify-content:center;margin:0;font-family:"Poppins",var(--font-sans);font-weight:600;line-height:1.2;text-align:center;letter-spacing:0}
+/* Shared opaque pagination covers Research's baked-in dots and stays legible on light artwork. */
+.research-indicators{position:absolute;z-index:2;left:50%;bottom:8px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:0;width:16%;min-width:120px;height:24px;padding:0 8px;background:#18212b;border-radius:999px}
+.research-indicators button{display:grid;place-items:center;flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;cursor:pointer;border-radius:999px}
+.research-indicators button span{display:block;width:7px;height:7px;border-radius:99px;background:#81909e;transition:width .2s,background .2s}
+.research-indicators button[aria-pressed="true"] span{width:24px;background:#fff}
+.research-indicators button:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+.research-indicators.is-light{background:#e5e9ee}
+.research-indicators.is-light button span{background:#9aa5b1}
+.research-indicators.is-light button[aria-pressed="true"] span{background:#344252}
+.research-indicators.is-light button:focus-visible{outline-color:#344252}
+@media(prefers-reduced-motion:reduce){.research-stage .research-slide,.research-indicators button span{transition:none}}
+
+
 </style>
 </head>
 <body>
@@ -709,7 +735,7 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
       <div><span class="eyebrow rv">What we do</span><h2 class="rv">From understanding problems to building products.</h2></div>
 
     </div>
-      <div class="wwd-visual"><figure class="svc-media active" id="svc-visual-0" aria-hidden="false"><div class="svc-image graphic"><img src="assets/genome-research-visual.webp" alt="Genome Cache before and after: the v1.0 quiz screen with four problems marked, and the v2.0 redesign answering each with readable type, one UI kit, responsive layouts and rewards; results: 4.8 CSAT score and 40% more time in the app" width="1200" height="1200"></div></figure><figure class="svc-media" id="svc-visual-1" aria-hidden="true"><div class="svc-image graphic flir-g"><img src="assets/flir-design-visual.webp" alt="FLIR METERLiNK design: a FLIR DM166 thermal multimeter sends readings over Bluetooth to the app, shown as device cards for AC voltage, temperature, humidity and sound level, with a floating measurement chart card annotated with spec lines and the design system's colours, typefaces and button states below" width="1200" height="1200" loading="lazy"></div></figure><figure class="svc-media" id="svc-visual-2" aria-hidden="true"><div class="svc-image reel"><video class="svc-reel" src="assets/weekday-showreel.mp4" poster="assets/weekday-showreel-poster.jpg" muted playsinline preload="auto" aria-label="15-second Weekday showreel: booking a desk on the floor plan, managing workspaces and zones, and the app's design system"></video><div class="reel-still" aria-hidden="true"><img src="assets/officepower-visual.webp" alt="Office Power: an isometric 3D office where HR, IT, finance and sales AI agents each work at their own desk, with an HR agent chat preparing a leave request and a budget card showing $1,729 of $1,900 used" width="1200" height="1200" loading="lazy"></div></div></figure></div>
+      <div class="wwd-visual"><figure class="svc-media active" id="svc-visual-0" aria-hidden="false"><div class="research-carousel" role="region" aria-roledescription="carousel" aria-label="Genome Cache case study"><div class="svc-image graphic research-stage"><div id="research-slide-1" class="research-slide is-current" aria-hidden="false"><img src="assets/genome-story/figma-clean-1.png?v=4602a7e7d3" alt="Genome Cache: a location-based genome learning game. Original challenges: hard-to-read text, inconsistent UI, rigid screen layouts and low motivation to explore." width="1254" height="1254"><h3 class="case-heading" data-copy-key="research-1" style="--heading-x:5.741627%;--heading-y:6.379585%;--heading-width:71.371611%;--heading-align:left"><span style="color:#ffffff">A learning adventure.</span><span style="color:#78f3fd">A challenge to engage.</span></h3><p class="case-label" data-label-key="research-1-pain-1" style="left:5.741627%;top:74.322169%;width:42.663477%;height:7.655502%;font-size:2.551834cqw;color:#fff">Hard-to-read text</p><p class="case-label" data-label-key="research-1-pain-2" style="left:51.594896%;top:74.322169%;width:42.663477%;height:7.655502%;font-size:2.551834cqw;color:#fff">Inconsistent UI</p><p class="case-label" data-label-key="research-1-pain-3" style="left:5.741627%;top:85.167464%;width:42.663477%;height:7.655502%;font-size:2.551834cqw;color:#fff">Rigid screen layouts</p><p class="case-label" data-label-key="research-1-pain-4" style="left:51.594896%;top:85.167464%;width:42.663477%;height:7.655502%;font-size:2.551834cqw;color:#fff">Low motivation to explore</p></div><div id="research-slide-2" class="research-slide" aria-hidden="true"><img src="assets/genome-story/figma-clean-2.png?v=50cf0f5da9" alt="BCT process: UX Research, Deep Focus and UI Design System turn friction into discovery." width="1254" height="1254"><h3 class="case-heading" data-copy-key="research-2" style="--heading-x:5.741627%;--heading-y:6.379585%;--heading-width:42.663477%;--heading-align:left"><span style="color:#ffffff">Turn friction</span><span style="color:#78f3fd">into discovery.</span></h3><p class="case-label" data-label-key="research-2-step-1" style="left:5.342903%;top:86.602871%;width:28.708134%;height:3.827751%;font-size:3.189793cqw;color:#fff">UX Research</p><p class="case-label" data-label-key="research-2-step-2" style="left:35.645933%;top:86.602871%;width:28.708134%;height:3.827751%;font-size:3.189793cqw;color:#fff">Deep Focus</p><p class="case-label" data-label-key="research-2-step-3" style="left:65.948963%;top:86.602871%;width:28.708134%;height:3.827751%;font-size:3.189793cqw;color:#fff">UI Design System</p></div><div id="research-slide-3" class="research-slide" aria-hidden="true"><img src="assets/genome-story/figma-clean-3.png?v=729fcc7e5f" alt="Genome Cache results: 40% more time spent in the app and a 4.8 user CSAT score, as reported in the BCT capability deck." width="1254" height="1254"><h3 class="case-heading" data-copy-key="research-3" style="--heading-x:19.457735%;--heading-y:6.379585%;--heading-width:61.164274%;--heading-align:center"><span style="color:#ffffff">Designed for</span><span style="color:#78f3fd">continued discovery.</span></h3><p class="case-label" data-label-key="research-3-value-1" style="left:14.912281%;top:77.910686%;width:27.113238%;height:7.894737%;font-size:7.655502cqw;color:#78f3fd">+40%</p><p class="case-label" data-label-key="research-3-label-1" style="left:14.912281%;top:87.081340%;width:27.113238%;height:3.110048%;font-size:2.551834cqw;color:#fff">Time spent in app</p><p class="case-label" data-label-key="research-3-value-2" style="left:57.974482%;top:77.910686%;width:27.113238%;height:7.894737%;font-size:7.655502cqw;color:#78f3fd">4.8</p><p class="case-label" data-label-key="research-3-label-2" style="left:57.974482%;top:87.081340%;width:27.113238%;height:3.110048%;font-size:2.551834cqw;color:#fff">User CSAT score</p></div></div><div class="research-indicators" role="group" aria-label="Choose a case study slide"><button type="button" aria-label="Slide 1: Product and challenges" aria-controls="research-slide-1" aria-pressed="true"><span></span></button><button type="button" aria-label="Slide 2: Design process" aria-controls="research-slide-2" aria-pressed="false"><span></span></button><button type="button" aria-label="Slide 3: Results" aria-controls="research-slide-3" aria-pressed="false"><span></span></button></div></div></figure><figure class="svc-media" id="svc-visual-1" aria-hidden="true"><div class="research-carousel design-carousel" role="region" aria-roledescription="carousel" aria-label="FLIR design case study"><div class="svc-image graphic research-stage"><div id="design-slide-1" class="research-slide is-current" aria-hidden="false"><img src="assets/design-story/figma-clean-1.png?v=43427cf425" alt="METERLiNK UI Design: Complex data. Clear interfaces. Device readings, trends and alerts in a mobile interface." width="1254" height="1254" loading="lazy"><h3 class="case-heading" data-copy-key="design-1" style="--heading-x:5.741627%;--heading-y:6.379585%;--heading-width:88.516746%;--heading-align:left"><span style="color:#ffffff">Complex data.</span><span style="color:#ffffff">Clear interfaces.</span></h3></div><div id="design-slide-2" class="research-slide" aria-hidden="true"><img src="assets/design-story/figma-clean-2.png?v=54b58dea61" alt="METERLiNK Design System: Many components. One shared language. Reusable components and consistent states." width="1254" height="1254" loading="lazy"><h3 class="case-heading" data-copy-key="design-2" style="--heading-x:5.741627%;--heading-y:6.379585%;--heading-width:88.516746%;--heading-align:center"><span style="color:#ffffff">Many components.</span><span style="color:#ffffff">One shared language.</span></h3></div><div id="design-slide-3" class="research-slide" aria-hidden="true" data-indicator-theme="light"><img src="assets/design-story/figma-clean-3.png?v=1cdc9e37a7" alt="DM266 Prototype: From screens to real interactions. Explore controls, display modes and device orientation." width="1254" height="1254" loading="lazy"><h3 class="case-heading" data-copy-key="design-3" style="--heading-x:21.012759%;--heading-y:6.379585%;--heading-width:57.974482%;--heading-align:center"><span style="color:#000000">From screens to</span><span style="color:#1e8dff">real interactions.</span></h3></div></div><div class="research-indicators" role="group" aria-label="Choose a design case study slide"><button type="button" aria-label="Slide 1: UI Design" aria-controls="design-slide-1" aria-pressed="true"><span></span></button><button type="button" aria-label="Slide 2: Design System" aria-controls="design-slide-2" aria-pressed="false"><span></span></button><button type="button" aria-label="Slide 3: Prototype" aria-controls="design-slide-3" aria-pressed="false"><span></span></button></div></div></figure><figure class="svc-media" id="svc-visual-2" aria-hidden="true"><div class="research-carousel weekday-carousel" role="region" aria-roledescription="carousel" aria-label="Weekday case study"><div class="svc-image graphic research-stage"><div id="weekday-slide-1" class="research-slide is-current" aria-hidden="false"><img src="assets/weekday-story/figma-slide-1.png?v=e38163bbfe" alt="Weekday: hybrid teams face limited desks and conflicting seating needs." width="1254" height="1254" loading="lazy"><h3 class="case-heading" data-copy-key="weekday-1" style="--heading-x:5.741627%;--heading-y:6.379585%;--heading-width:88.516746%;--heading-align:left"><span style="color:#fff">Hybrid team.</span><span class="case-heading-lavender">Not enough desks.</span></h3></div><div id="weekday-slide-2" class="research-slide" aria-hidden="true"><img src="assets/weekday-story/figma-slide-2.png?v=89dc70cab7" alt="Weekday: choose a day, select a seat and book before arriving." width="1254" height="1254" loading="lazy"><h3 class="case-heading" data-copy-key="weekday-2" style="--heading-x:5.741627%;--heading-y:6.379585%;--heading-width:88.516746%;--heading-align:left"><span style="color:#fff">Book a desk</span><span class="case-heading-lavender">before you arrive.</span></h3></div><div id="weekday-slide-3" class="research-slide" aria-hidden="true"><img src="assets/weekday-story/figma-slide-3.png?v=fd02d20b18" alt="Weekday: confirmed desk bookings give everyone a seat." width="1254" height="1254" loading="lazy"><h3 class="case-heading" data-copy-key="weekday-3" style="--heading-x:5.741627%;--heading-y:6.379585%;--heading-width:88.516746%;--heading-align:left"><span style="color:#fff">Everyone</span><span class="case-heading-lavender">has a seat.</span></h3></div></div><div class="research-indicators" role="group" aria-label="Choose a Weekday case study slide"><button type="button" aria-label="Slide 1: Seating challenges" aria-controls="weekday-slide-1" aria-pressed="true"><span></span></button><button type="button" aria-label="Slide 2: Desk booking" aria-controls="weekday-slide-2" aria-pressed="false"><span></span></button><button type="button" aria-label="Slide 3: Confirmed seats" aria-controls="weekday-slide-3" aria-pressed="false"><span></span></button></div></div></figure></div>
       <ol class="svc-list"><li class="svc active" id="service-research"><h3><button class="svc-toggle" id="svc-toggle-0" aria-expanded="true" aria-controls="svc-detail-0"><span class="svc-title"><span class="svc-number" aria-hidden="true">01</span><span>Research</span></span></button></h3><div class="svc-detail" id="svc-detail-0" role="region" aria-labelledby="svc-toggle-0"><p>Find the right problem to solve. We explore user needs, review existing experiences and test assumptions to help teams decide what matters most—and where to go next.</p><ul class="svc-offerings" aria-label="Research services"><li>UX Research</li><li>Usability Testing</li></ul></div></li><li class="svc" id="service-ui"><h3><button class="svc-toggle" id="svc-toggle-1" aria-expanded="false" aria-controls="svc-detail-1"><span class="svc-title"><span class="svc-number" aria-hidden="true">02</span><span>Design</span></span></button></h3><div class="svc-detail" id="svc-detail-1" role="region" aria-labelledby="svc-toggle-1" hidden><p>Make complex products feel simple. We turn insights into clear interfaces, reusable design systems and interactive prototypes, helping teams align on the experience before development begins.</p><ul class="svc-offerings" aria-label="Design services"><li>UI Design</li><li>Design System</li><li>Prototype</li></ul></div></li><li class="svc" id="service-inhouse"><h3><button class="svc-toggle" id="svc-toggle-2" aria-expanded="false" aria-controls="svc-detail-2"><span class="svc-title"><span class="svc-number" aria-hidden="true">03</span><span>In-house</span></span></button></h3><div class="svc-detail" id="svc-detail-2" role="region" aria-labelledby="svc-toggle-2" hidden><p>We design for our own teams, too. From the BCT Website and presentation decks to Weekday, our work spans brand communication and tools for everyday work. We also explore AI products through Office Power, bringing AI agents into the workplace.</p><ul class="svc-offerings" aria-label="In-house services"><li>Weekday</li><li>Office Power - AI product</li></ul></div></li></ol>
     </div>
   </div>
@@ -888,6 +914,51 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
   if (reel && 'IntersectionObserver' in window) {
     new IntersectionObserver(syncReel, {threshold: [0, .25, .5]}).observe(reel);
   }
+  /* Shared five-second case-study carousel; hidden panels never advance. */
+  const initCaseCarousel = researchPanel => {
+  const researchSlides = [...researchPanel.querySelectorAll('.research-slide')];
+  const researchDots = [...researchPanel.querySelectorAll('.research-indicators button')];
+  let researchIndex = 0, researchTimer = 0, researchInView = false;
+  const syncResearch = () => {
+    clearTimeout(researchTimer);
+    researchTimer = 0;
+    if (researchInView && researchPanel.classList.contains('active') && !document.hidden && !reduceMotion) {
+      researchTimer = setTimeout(() => showResearch((researchIndex + 1) % researchSlides.length), 5000);
+    }
+  };
+  const showResearch = index => {
+    researchIndex = index;
+    researchPanel.querySelector('.research-indicators').classList.toggle('is-light', researchSlides[index].dataset.indicatorTheme === 'light');
+    researchSlides.forEach((slide, i) => {
+      slide.classList.toggle('is-current', i === index);
+      slide.setAttribute('aria-hidden', String(i !== index));
+      researchDots[i].setAttribute('aria-pressed', String(i === index));
+    });
+    syncResearch();
+  };
+  researchDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showResearch(index));
+    dot.addEventListener('keydown', event => {
+      if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+      event.preventDefault();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? researchDots.length - 1 :
+        (index + (event.key === 'ArrowRight' ? 1 : -1) + researchDots.length) % researchDots.length;
+      showResearch(next);
+      researchDots[next].focus();
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      researchInView = entries[0].isIntersecting;
+      syncResearch();
+    }, {threshold: 0}).observe(researchPanel);
+  } else { researchInView = true; syncResearch(); }
+  document.addEventListener('visibilitychange', syncResearch);
+  return syncResearch;
+  };
+  const caseCarousels = [0, 1, 2].map(index => initCaseCarousel(document.getElementById(`svc-visual-${index}`)));
+  const syncResearch = () => caseCarousels.forEach(sync => sync());
+
   const svcMotions = new Map();
   const activateSvc = index => {
     if(svcItems[index].classList.contains('active'))return;
@@ -902,6 +973,7 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
       svcVisuals[i].setAttribute('aria-hidden',String(i!==index));
     });
     syncReel();
+    syncResearch();
     if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
       const after=svcItems.map(item=>item.getBoundingClientRect().height);
       svcItems.forEach((item,i)=>{
@@ -1104,5 +1176,6 @@ footer{padding:48px 0 40px;margin-top:clamp(72px,9vw,120px);border-top:1px solid
 })();
 /* END merged How we work */
 </script>
+<script src="assets/case-study-copy.js"></script>
 </body>
 </html>
