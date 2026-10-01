@@ -1,0 +1,22 @@
+{
+  "tool": "Built-in image_gen",
+  "sharedPrompt": "Minimal tactile 3D objects, gently rounded matte surfaces, soft studio lighting, clean silhouettes, three-quarter front view. Blue #0A7BC4, pale blue #BFE0F5, ivory #FFFDF9, mustard #E3C065, charcoal #1A1A1A. Transparent alpha PNG. No backdrop, ground plane, text, labels or watermark.",
+  "subjects": [
+    [
+      "insight",
+      "A research notebook with two tabbed paper sheets, a simple blue bar chart and a magnifying glass resting diagonally across it."
+    ],
+    [
+      "figure-out",
+      "Two sculptural overlapping conversation bubbles, one blue and one ivory, with three mustard typing dots and a small four-point AI sparkle between them."
+    ],
+    [
+      "prototype",
+      "A miniature desktop monitor and a mobile phone, showing minimal blue and ivory interface blocks, with a small mustard AI sparkle beside them."
+    ],
+    [
+      "verify",
+      "An ivory checklist clipboard with three blue checkmarks, a large blue approval check tile and a small mustard thumbs-up token."
+    ]
+  ]
+}
